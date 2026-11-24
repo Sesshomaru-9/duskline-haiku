@@ -46,6 +46,7 @@ def _validate_entry(text: str) -> None:
     """Gate check, mirroring the sealed scorer: UTF-8 text of 1 to 200
     characters, not only whitespace; plus the 5-7-5 haiku shape."""
     assert isinstance(text, str) and text, "entry must be non-empty text"
+    assert "\r" not in text, "entry must not contain carriage returns"
     assert text.strip(), "entry must not be only whitespace"
     assert 1 <= len(text) <= MAX_CHARS, (
         f"entry is {len(text)} chars, must be 1-{MAX_CHARS}"
